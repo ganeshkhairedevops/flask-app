@@ -25,17 +25,20 @@ def submit():
     return 'Data Submited Successfully'
 
 @app.route('/api')
-def name():
+def api():
 
-    name = request.values.get('name')
-    age = request.values.get('age')
+    data = collection.find()
 
-    result = {
-        'name': name,
-        'age': age
+    data = list(data)
+    for item in data:
+        print(item)
+
+        del item["_id"]
+    data = {
+        'data' : data
     }
   
-    return 'api response page'
+    return data
 
 if __name__ == '__main__':
 
